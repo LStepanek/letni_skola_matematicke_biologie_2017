@@ -1,0 +1,220 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% presentation theme ----------------------------------------------------------
+\usetheme{Frankfurt}
+
+% mathematical notation of article kind ---------------------------------------
+\usefonttheme[onlymath]{serif}
+
+% I am loading some packages --------------------------------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage{csquotes}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{amsfonts}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{epstopdf}   % it guarantees .eps figures are displayed
+                        % properly on Windows
+\usepackage{blindtext}
+\usepackage{scrextend}
+\usepackage{remreset}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{subfig}
+\usepackage{tikz}
+\usetikzlibrary{arrows,positioning} 
+\tikzset{
+    %Define standard arrow tip
+    >=stealth',
+    %Define style for boxes
+    punkt/.style={
+           rectangle,
+           rounded corners,
+           draw=black, very thick,
+           text width=6.5em,
+           minimum height=2em,
+           text centered},
+    % Define arrow style
+    pil/.style={
+           ->,
+           thick,
+           shorten <=2pt,
+           shorten >=2pt,}
+}
+
+% I am setting a frame size and margins ---------------------------------------
+\setbeamersize{%
+  text margin left = 0.5cm,
+  text margin right = 0.5cm
+}
+
+% new command for reduced font size -------------------------------------------
+\newcommand\reduceFontSize{\fontsize{8}{10}\selectfont}
+
+% I am setting a graphic path -------------------------------------------------
+\graphicspath{{./figures/}}
+
+% I am defining my own footer that is unique for title page -------------------
+\defbeamertemplate*{footline}{my footline}
+{
+    \ifnum \insertpagenumber = 1
+        \leavevmode%
+        \hbox{%
+            \pgfsetfillopacity{1}\begin{beamercolorbox}[wd=.20\paperwidth,
+              ht=2.25ex,dp=1ex,center]{author in head/foot}%
+              \usebeamerfont{author in head/foot}\pgfsetfillopacity{1}
+            \end{beamercolorbox}%
+            \pgfsetfillopacity{1}\begin{beamercolorbox}[wd=.60\paperwidth,
+              ht=2.25ex,dp=1ex,center]{title in head/foot}%
+              \usebeamerfont{title in head/foot}\pgfsetfillopacity{1}
+            \end{beamercolorbox}%
+            \pgfsetfillopacity{.8}\begin{beamercolorbox}[wd=.14\paperwidth,
+              ht=2.25ex,dp=1ex,center]{date in head/foot}%
+              \usebeamerfont{date in head/foot}\pgfsetfillopacity{1}%
+              \insertshortdate{}
+            \end{beamercolorbox}%
+            \pgfsetfillopacity{1}\begin{beamercolorbox}[wd=.06\paperwidth,
+              ht=2.25ex,dp=1ex,right]{date in head/foot}%
+              \insertframenumber{}/\inserttotalframenumber\hspace*{1ex}
+            \end{beamercolorbox}
+          }%
+        \vskip0pt%
+    \else
+        \leavevmode%
+        \hbox{%
+            \pgfsetfillopacity{1}\begin{beamercolorbox}[wd=.20\paperwidth,
+              ht=2.25ex,dp=1ex,center]{author in head/foot}%
+              \usebeamerfont{author in head/foot}\pgfsetfillopacity{1}%
+                \hspace*{0.5ex}\insertshortauthor
+            \end{beamercolorbox}%
+            \pgfsetfillopacity{1}\begin{beamercolorbox}[wd=.60\paperwidth,
+              ht=2.25ex,dp=1ex,center]{title in head/foot}%
+              \usebeamerfont{title in head/foot}\pgfsetfillopacity{1}%
+                \insertshorttitle
+            \end{beamercolorbox}%
+            \pgfsetfillopacity{.8}\begin{beamercolorbox}[wd=.14\paperwidth,
+              ht=2.25ex,dp=1ex,center]{date in head/foot}%
+              \usebeamerfont{date in head/foot}\pgfsetfillopacity{1}%
+                \insertshortdate{}
+            \end{beamercolorbox}%
+            \pgfsetfillopacity{1}\begin{beamercolorbox}[wd=.06\paperwidth,
+              ht=2.25ex,dp=1ex,right]{date in head/foot}%  
+              \insertframenumber{}/\inserttotalframenumber\hspace*{1ex}
+            \end{beamercolorbox}
+          }%
+        \vskip0pt%
+    \fi
+}
+
+\setbeamertemplate{footline}[my footline]
+
+% navigation circles in header ------------------------------------------------
+\makeatletter
+    \@removefromreset{subsection}{section}
+\makeatother
+\setcounter{subsection}{1}
+
+% I am defining my own commands to switch-off including of some frames
+% into navigational circles ---------------------------------------------------
+\makeatletter
+\let\beamer@writeslidentry@miniframeson = \beamer@writeslidentry
+\def\beamer@writeslidentry@miniframesoff{%
+  \expandafter\beamer@ifempty\expandafter{\beamer@framestartpage}{}
+  % does not happen normally
+  {%else
+    % removed \addtocontents commands
+    \clearpage\beamer@notesactions%
+  }
+}
+\newcommand*{\miniframeson}{%
+  \let\beamer@writeslidentry = \beamer@writeslidentry@miniframeson
+}
+\newcommand*{\miniframesoff}{%
+  \let\beamer@writeslidentry = \beamer@writeslidentry@miniframesoff
+}
+
+% removing a section from header and outline via "\section*" command ----------
+\long\def\beamer@@ssection*#1{\beamer@section[]{}}
+
+\makeatother
+
+% I am defining highlighting of R language code chunks ------------------------
+%\captionsetup[lstlisting]{position = bottom}
+\definecolor{my_gray}{rgb}{0.4,0.4,0.4}
+\renewcommand{\lstlistingname}{Code}  %% code label redefining
+\lstdefinestyle{custom_R}{
+  basicstyle = \ttfamily\scriptsize,
+  belowcaptionskip = 1\baselineskip,
+  breaklines = true,
+  frame = L,
+  xleftmargin = \parindent,
+  language = R,
+  showstringspaces = false,
+  keywordstyle = \bfseries\color{green!40!black},
+  commentstyle = \itshape\color{purple!40!black},
+  identifierstyle = \color{blue},
+  stringstyle = \color{orange},
+  numbers = left,
+  numbersep = 12pt,
+  numberstyle = \small\color{my_gray},
+  texcl = true,
+  alsoother = {\#},
+  inputencoding = utf8,
+  extendedchars = true,
+  literate = %
+  {á}{{\'a}}1
+  {č}{{\v{c}}}1
+  {ď}{{\v{d}}}1
+  {é}{{\'e}}1
+  {ě}{{\v{e}}}1
+  {í}{{\'i}}1
+  {ň}{{\v{n}}}1
+  {ó}{{\'o}}1
+  {ř}{{\v{r}}}1
+  {š}{{\v{s}}}1
+  {ť}{{\v{t}}}1
+  {ú}{{\'u}}1
+  {ů}{{\r{u}}}1
+  {ý}{{\'y}}1
+  {ž}{{\v{z}}}1
+  {Á}{{\'A}}1
+  {Č}{{\v{C}}}1
+  {Ď}{{\v{D}}}1
+  {É}{{\'E}}1
+  {Ě}{{\v{E}}}1
+  {Í}{{\'I}}1
+  {Ň}{{\v{N}}}1
+  {Ó}{{\'O}}1
+  {Ř}{{\v{R}}}1
+  {Š}{{\v{S}}}1
+  {Ť}{{\v{T}}}1
+  {Ú}{{\'U}}1
+  {Ů}{{\r{U}}}1
+  {Ý}{{\'Y}}1
+  {Ž}{{\v{Z}}}1
+}
+\lstset{escapechar = @, style = custom_R}
+
+% I am defining a font of labels in labeling environtment ---------------------
+\addtokomafont{labelinglabel}{\ttfamily}
+
+% I am defining czech type of double quotes -----------------------------------
+\DeclareQuoteAlias{german}{czech}
+\MakeOuterQuote{"}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+

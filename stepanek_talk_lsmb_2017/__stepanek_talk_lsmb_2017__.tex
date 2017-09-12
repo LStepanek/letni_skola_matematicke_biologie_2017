@@ -1,0 +1,350 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Typeset by LaTeX by Lubomir Stepanek, September 2017.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% I am defining class and properties of the document -------------------------
+\documentclass[t, compress]{beamer}
+
+
+%% ----------------------------------------------------------------------------
+%% I am setting title page and global parameters ------------------------------
+%% ----------------------------------------------------------------------------
+
+\mode<presentation>{
+
+%% I am including my own styles saved in "my_styles.text" file ----------------
+\input{my_styles.tex}
+
+}
+
+
+%% I am setting title page ----------------------------------------------------
+
+\title[%
+  Aplikace pro podporu správného výběru
+  a realizace statistické metody%
+]{%
+  Aplikace \texttt{statisticke\_nastroje} \\
+  pro podporu \\ správného výběru
+  a realizace statistické metody%
+}
+
+\subtitle{%
+  \vspace{-0.15cm}
+  --- \\
+  \vspace{-0.05cm}
+  Letní škola matematické biologie 2017%
+}
+
+\author[%
+  Lubomír Štěpánek%
+]{%
+  \vspace{-0.15cm}Lubomír Štěpánek\textsuperscript{1, 2}\vspace{-0.15cm}
+}
+
+\institute{%
+
+  \begin{minipage}{.30\textwidth}
+    \vspace{+0.15cm}
+    \centering
+    {%
+      \hspace{+1.5cm}
+      \includegraphics[width = 1.2cm]{lf1_logo.eps} \\
+      \vspace{0.35cm}
+      \hspace{+1.5cm}
+      \includegraphics[width = 1.1cm]{fbmi_logo.eps}%
+    }
+  \end{minipage}%
+  %
+  \begin{minipage}{.70\textwidth}
+    \textsuperscript{1}BIOSTAT \& Oddělení výpočetní techniky \\
+    \phantom{\textsuperscript{1}}Ústav biofyziky a informatiky \\
+    \phantom{\textsuperscript{1}}1. lékařská fakulta \\
+    \phantom{\textsuperscript{1}}Univerzita Karlova v Praze \\
+    \\
+    \textsuperscript{2}Katedra biomedicínské informatiky \\
+    \phantom{\textsuperscript{2}}Fakulta biomedicínského inženýrství \\
+    \phantom{\textsuperscript{2}}České vysoké učení technické v Praze
+  \end{minipage}
+  
+}
+
+\date[14. září 2017]{\phantom{14. září 2017}}
+
+
+%% ----------------------------------------------------------------------------
+%% I am beginning the document ------------------------------------------------
+%% ----------------------------------------------------------------------------
+
+\begin{document}
+
+
+%% title page -----------------------------------------------------------------
+
+{
+\setbeamertemplate{headline}{}
+\miniframesoff % it is switching off including of the frame
+               % in header navigational circles
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\miniframeson  % it is switching on the including of the frame
+               % in the header navigational circles again
+}
+
+
+%% talk content ---------------------------------------------------------------
+
+\miniframesoff
+\begin{frame}
+  \frametitle{%
+    Obsah ústního sdělení%
+  }
+  \tableofcontents
+\end{frame}
+\miniframeson
+
+
+%% ----------------------------------------------------------------------------
+%% sekce "úvod" ---------------------------------------------------------------
+%% ----------------------------------------------------------------------------
+
+\section{Úvod}
+
+%% rychlý úvod ----------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{%
+    Rychlý úvod%
+  }
+  \begin{itemize}
+    \item statistika ve výzkumu hraje vždy důležitou roli
+    \item různé statistické nástroje mají různé nevýhody
+    \item webová customizovaná aplikace se snaží pokrýt výhody
+    \begin{itemize}
+      \item komerčních nástrojů
+      \item volně dostupných nástrojů
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+%% odkaz na aplikaci ----------------------------------------------------------
+
+\begin{frame}
+  \frametitle{%
+    Odkaz na aplikaci%
+  }
+  \vspace{+2.0cm}
+  \begin{block}{\centering Odkaz}
+    \center
+    \href{%
+      http://shiny.statest.cz:3838/statisticke\_nastroje/%
+    }{%
+      http://shiny.statest.cz:3838/statisticke\_nastroje/%
+    }
+  \end{block}
+\end{frame}
+
+
+%% ----------------------------------------------------------------------------
+%% sekce "o aplikaci" ---------------------------------------------------------
+%% ----------------------------------------------------------------------------
+
+\section{O aplikaci}
+
+%% prakticky o aplikaci -------------------------------------------------------
+
+\begin{frame}
+  \frametitle{%
+    Prakticky o aplikaci%
+  }
+  \begin{itemize}
+    \item cílí hlavně na česky mluvící pregraduální studenty
+    \item podporuje fázi výběru a realizace pomocí vhodné statistické
+    metody
+    \item online, nevyžaduje instalaci či licenci    
+  \end{itemize}
+\end{frame}
+
+
+%% technicky o aplikaci -------------------------------------------------------
+
+\begin{frame}
+  \frametitle{%
+    Technicky o aplikaci%
+  }
+  \begin{itemize}
+    \item napsána hlavně pomocí jazyka R a jeho knihovny \texttt{shiny}
+    \item umístěna na R-kovém serveru 1. LF UK
+    \item obsahuje cca 1400 kódujících řádků v jazyce R
+    \item HTML, CSS a \texttt{javascript} zajišťují uživatelský komfort
+  \end{itemize}
+\end{frame}
+
+
+%% ----------------------------------------------------------------------------
+%% sekce "vývojové diagramy pro podporu volby vhodné metody" ------------------
+%% ----------------------------------------------------------------------------
+
+\section{Diagramy pro podporu volby vhodné metody}
+
+%% vývojové diagramy pro pro podporu volby vhodné metody ----------------------
+
+\begin{frame}
+  \frametitle{}
+  \begin{figure}
+    \centering
+    \vspace{-0.35cm}
+    \includegraphics[width = 11.1cm]{%
+      flow_chart.pdf%
+    }
+  \end{figure}
+\end{frame}
+
+
+%% vývojové diagramy pro pro podporu volby vhodné metody ----------------------
+
+\begin{frame}
+  \frametitle{}
+  \begin{figure}
+    \centering
+    \vspace{-0.2cm}
+    \includegraphics[width = 11.5cm]{%
+      nice_flow_chart.pdf%
+    }
+  \end{figure}
+\end{frame}
+
+
+%% ----------------------------------------------------------------------------
+%% sekce "aktuální stav" ------------------------------------------------------
+%% ----------------------------------------------------------------------------
+
+\section{Aktuální stav}
+
+%% dosažené výsledky ----------------------------------------------------------
+
+\begin{frame}
+  \frametitle{%
+    Dosažené výsledky%
+  }
+  \begin{block}{\centering Odkaz}
+    \center
+    \href{%
+      http://shiny.statest.cz:3838/statisticke\_nastroje/%
+    }{%
+      http://shiny.statest.cz:3838/statisticke\_nastroje/%
+    }
+  \end{block}
+  \begin{itemize}
+    \item aplikace pokrývá běžné statistické metody
+    \begin{itemize}
+      \item parametrické metody
+      \item neparametrické metody
+    \end{itemize}
+    \item implementován responzivní design
+    \item v plánu zapojení aplikace pro účely analýz do závěrečných
+    prací na \mbox{1. LF UK} v akademickém roce 2017/2018
+  \end{itemize}
+\end{frame}
+
+
+%% uživatelské rozhraní -------------------------------------------------------
+
+\begin{frame}
+  \frametitle{%
+    Uživatelské rozhraní%
+  }  
+  \vspace{-0.8cm}  
+  \begin{figure}
+    %\hspace{-1.0cm}
+    \includegraphics[width = 12.0cm]{%
+      user_interface.jpg%
+    }
+  \end{figure}
+\end{frame}
+
+
+%% ----------------------------------------------------------------------------
+%% sekce "závěr" --------------------------------------------------------------
+%% ----------------------------------------------------------------------------
+
+\section{Závěrem}
+
+%% conclusion -----------------------------------------------------------------
+
+\begin{frame}
+  \frametitle{%
+    Shrnutí%
+  }
+  \begin{itemize}
+    \item relativně krátkým kódem psaným v R získány pokročilé
+    výpočetní metody volně dostupné online
+    \item možnost "doimplementování" nových metod
+    \item pomocí R je možné vytvářet i mnohozáložkové aplikace
+    \mbox{s responzivním} designem
+    \item serverové open-source R řešení plně podporuje češtinu
+  \end{itemize}
+\end{frame}
+
+
+%% ----------------------------------------------------------------------------
+%% section "díky za pozornost" ------------------------------------------------
+%% ----------------------------------------------------------------------------
+
+\section*{End}
+
+%% děkuji za pozornost --------------------------------------------------------
+
+{
+\setbeamertemplate{headline}{}
+\miniframesoff
+\begin{frame}
+\frametitle{}
+  \vspace{+1.6cm}
+  \begin{block}{\centering Děkuji za pozornost!}
+    \center
+    \begin{tabular}{l@{}l@{}l}
+      &\href{mailto:lubomir.stepanek@lf1.cuni.cz}{%
+        lubomir.stepanek@lf1.cuni.cz%
+      } \\
+      &\href{mailto:lubomir.stepanek@fbmi.cvut.cz}{%
+        lubomir.stepanek@fbmi.cvut.cz%
+      }
+    \end{tabular}
+  \end{block}
+  \vspace{+0.8cm}
+  \begin{center}
+    
+    \href{http://shiny.statest.cz:3838/statisticke\_nastroje/}{%
+      \framebox{http://shiny.statest.cz:3838/statisticke\_nastroje/}%
+    }
+    
+  \end{center}
+\end{frame}
+\miniframeson
+}
+
+
+%% ----------------------------------------------------------------------------
+%% I am ending the document ---------------------------------------------------
+%% ----------------------------------------------------------------------------
+
+\end{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
